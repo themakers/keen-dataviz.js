@@ -5522,7 +5522,7 @@ var Funnel = function () {
           name: d[0],
           label: label,
           percent: (percent === 'NaN' ? 0 : percent) + '%',
-          result: result,
+          result: result || '0',
           points: [].concat(newPoints, [{
             x: (svgWidth - prevElemWidth) / 2 + prevElemWidth,
             y: elemHeight * (i + 1)
@@ -5750,7 +5750,12 @@ var Funnel3d = function () {
           hover = _config$funnel.hover,
           minimalSize = _config$funnel.minimalSize;
 
-      var margin = { top: 20, right: 30, bottom: 60, left: 200 };
+      var margin = {
+        top: 20,
+        right: 30,
+        bottom: 60,
+        left: 200
+      };
       var funnelContainer = d3.select(container);
       var chartContainer = d3.select(this.el().querySelector('.' + this.config.theme + '-rendering .c3-chart'));
       var chart = chartContainer.append('svg');
@@ -5802,7 +5807,7 @@ var Funnel3d = function () {
           name: d[0],
           label: label,
           percent: (percent === 'NaN' ? 0 : percent) + '%',
-          result: result,
+          result: result || '0',
           points: [].concat(newPoints, [{
             x: (svgWidth - prevElemWidth) / 2 + prevElemWidth,
             y: elemHeight * (i + 1)
@@ -5954,10 +5959,10 @@ var Funnel3d = function () {
         };
 
         var polygonsHover = chart.selectAll('polygon');
-        polygonsHover.on("mouseover", handleMouseOver).on("mouseout", handleMouseOut);
+        polygonsHover.on('mouseover', handleMouseOver).on('mouseout', handleMouseOut);
 
         var labelHover = chart.selectAll('text');
-        labelHover.on("mouseover", handleMouseOver).on("mouseout", handleMouseOut);
+        labelHover.on('mouseover', handleMouseOver).on('mouseout', handleMouseOut);
       }
 
       // click to copy
