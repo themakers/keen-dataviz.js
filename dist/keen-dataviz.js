@@ -38193,7 +38193,7 @@ var Funnel3d = function () {
       }
 
       var positiveOrZero = function positiveOrZero(val) {
-        return isNaN(val) ? 0 : val;
+        return val;
       };
 
       var polygons = matrix.slice(1).map(function (d, i) {
