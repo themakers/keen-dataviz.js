@@ -5426,12 +5426,17 @@ var Funnel = function () {
       if (minimalSize) {
         minimalSizeStep = (svgWidth - minimalSize) / (matrix.length - 2);
       }
+
+      var positiveOrZero = function positiveOrZero(val) {
+        return isNaN(val) ? 0 : val;
+      };
+
       var polygons = matrix.slice(1).map(function (d, i) {
         var newPoints = [{
-          x: (svgWidth - prevElemWidth) / 2,
+          x: positiveOrZero((svgWidth - prevElemWidth) / 2),
           y: elemHeight * i + yMarginElement
         }, {
-          x: (svgWidth - prevElemWidth) / 2 + prevElemWidth,
+          x: positiveOrZero((svgWidth - prevElemWidth) / 2 + prevElemWidth),
           y: elemHeight * i + yMarginElement
         }];
         if (i !== 0) {
@@ -5463,10 +5468,10 @@ var Funnel = function () {
           percent: (percent === 'NaN' ? 0 : percent) + '%',
           result: result || '0',
           points: [].concat(newPoints, [{
-            x: (svgWidth - prevElemWidth) / 2 + prevElemWidth,
+            x: positiveOrZero((svgWidth - prevElemWidth) / 2 + prevElemWidth),
             y: elemHeight * (i + 1)
           }, {
-            x: (svgWidth - prevElemWidth) / 2,
+            x: positiveOrZero((svgWidth - prevElemWidth) / 2),
             y: elemHeight * (i + 1)
           }])
         };
@@ -5711,12 +5716,17 @@ var Funnel3d = function () {
       if (minimalSize) {
         minimalSizeStep = (svgWidth - minimalSize) / (matrix.length - 2);
       }
+
+      var positiveOrZero = function positiveOrZero(val) {
+        return isNaN(val) ? 0 : val;
+      };
+
       var polygons = matrix.slice(1).map(function (d, i) {
         var newPoints = [{
-          x: (svgWidth - prevElemWidth) / 2,
+          x: positiveOrZero((svgWidth - prevElemWidth) / 2),
           y: elemHeight * i + yMarginElement
         }, {
-          x: (svgWidth - prevElemWidth) / 2 + prevElemWidth,
+          x: positiveOrZero((svgWidth - prevElemWidth) / 2 + prevElemWidth),
           y: elemHeight * i + yMarginElement
         }];
         if (i !== 0) {
@@ -5748,10 +5758,10 @@ var Funnel3d = function () {
           percent: (percent === 'NaN' ? 0 : percent) + '%',
           result: result || '0',
           points: [].concat(newPoints, [{
-            x: (svgWidth - prevElemWidth) / 2 + prevElemWidth,
+            x: positiveOrZero((svgWidth - prevElemWidth) / 2 + prevElemWidth),
             y: elemHeight * (i + 1)
           }, {
-            x: (svgWidth - prevElemWidth) / 2,
+            x: positiveOrZero((svgWidth - prevElemWidth) / 2),
             y: elemHeight * (i + 1)
           }])
         };
