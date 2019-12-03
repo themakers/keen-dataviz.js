@@ -5448,7 +5448,8 @@ var Funnel = function () {
           container = _config.container,
           labelMapping = _config.labelMapping,
           colorMapping = _config.colorMapping,
-          utils = _config.utils;
+          utils = _config.utils,
+          displayZeroPercent = _config.displayZeroPercent;
 
       var opts = this.config;
       var _config$funnel = this.config.funnel,
@@ -5511,10 +5512,13 @@ var Funnel = function () {
         if ((typeof opts['prettyNumber'] === 'undefined' || opts['prettyNumber'] === true) && !isNaN(parseInt(d[1]))) {
           result = (0, _prettyNumber.prettyNumber)(d[1]);
         }
+
+        var displayPercent = percent === 'NaN' ? 0 : percent;
+
         return {
           name: d[0],
           label: label,
-          percent: (percent === 'NaN' ? 0 : percent) + '%',
+          percent: displayZeroPercent === false && displayPercent === 0 ? '' : (percent === 'NaN' ? 0 : percent) + '%',
           result: result,
           points: [].concat(newPoints, [{
             x: (svgWidth - prevElemWidth) / 2 + prevElemWidth,
