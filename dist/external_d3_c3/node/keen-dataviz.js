@@ -5402,7 +5402,12 @@ var Funnel = function () {
           hover = _config$funnel.hover,
           minimalSize = _config$funnel.minimalSize;
 
-      var margin = { top: 20, right: 30, bottom: 30, left: 200 };
+      var margin = {
+        top: 20,
+        right: 30,
+        bottom: 30,
+        left: 200
+      };
       var yMarginElement = 0;
       if (marginBetweenSteps) {
         yMarginElement = 5;
@@ -5430,11 +5435,11 @@ var Funnel = function () {
           y: elemHeight * i + yMarginElement
         }];
         if (i !== 0) {
-          if (countingMethod === "relative") {
+          if (countingMethod === 'relative') {
             minimalSize ? prevElemWidth = prevElemWidth - minimalSizeStep : prevElemWidth = prevElemWidth * d[1] / matrix[i][1];
             percent = (d[1] / matrix[i][1] * 100).toFixed(decimals);
           }
-          if (countingMethod === "absolute") {
+          if (countingMethod === 'absolute') {
             minimalSize ? prevElemWidth = prevElemWidth - minimalSizeStep : prevElemWidth = svgWidth * d[1] / matrix[1][1];
             percent = (d[1] / matrix[1][1] * 100).toFixed(decimals);
           }
@@ -5452,12 +5457,10 @@ var Funnel = function () {
           result = (0, _prettyNumber.prettyNumber)(d[1]);
         }
 
-        var displayPercent = percent === 'NaN' ? 0 : percent;
-
         return {
           name: d[0],
           label: label,
-          percent: displayZeroPercent === false && displayPercent === 0 ? '' : (percent === 'NaN' ? 0 : percent) + '%',
+          percent: (percent === 'NaN' ? 0 : percent) + '%',
           result: result,
           points: [].concat(newPoints, [{
             x: (svgWidth - prevElemWidth) / 2 + prevElemWidth,
@@ -5584,10 +5587,10 @@ var Funnel = function () {
         };
 
         var polygonsHover = chart.selectAll('polygon');
-        polygonsHover.on("mouseover", handleMouseOver).on("mouseout", handleMouseOut);
+        polygonsHover.on('mouseover', handleMouseOver).on('mouseout', handleMouseOut);
 
         var labelHover = chart.selectAll('text');
-        labelHover.on("mouseover", handleMouseOver).on("mouseout", handleMouseOut);
+        labelHover.on('mouseover', handleMouseOver).on('mouseout', handleMouseOut);
       }
 
       // click to copy
@@ -5733,10 +5736,11 @@ var Funnel3d = function () {
         if ((typeof opts['prettyNumber'] === 'undefined' || opts['prettyNumber'] === true) && !isNaN(parseInt(d[1]))) {
           result = (0, _prettyNumber.prettyNumber)(d[1]);
         }
+
         return {
           name: d[0],
           label: label,
-          percent: percent + '%',
+          percent: (percent === 'NaN' ? 0 : percent) + '%',
           result: result,
           points: [].concat(newPoints, [{
             x: (svgWidth - prevElemWidth) / 2 + prevElemWidth,
